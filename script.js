@@ -11,6 +11,8 @@ function bookMaker(title,author,pages,read){
 }
 
 // takes user input, store book object into array
-function addBookToLibrary(){
-
+function addBookToLibrary(newBook){
+    myLibrary.push(newBook);
 }
+
+//let book = new bookMaker('The Hobbit', 'J.R.R. Tolkien', '295 pages', 'not read yet');

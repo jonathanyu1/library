@@ -1,0 +1,25 @@
+html, body{
+    height: 100%;
+    width: 100%;
+}
+
+.bodyContainer{
+    display:grid;
+    grid-template-columns: 30% auto;
+    grid-template-rows: 150px auto;
+    grid-template-areas: "header header"
+                         "sidebar library";
+
+}
+
+.title{
+    grid-area: header;
+}
+
+.sidebarContainer{
+    grid-area: sidebar;
+}
+
+.bookContainer{
+    grid-area: library;
+}
