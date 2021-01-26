@@ -5,14 +5,14 @@ html, body{
 
 .bodyContainer{
     display:grid;
-    grid-template-columns: 30% auto;
+    grid-template-columns: 15% auto;
     grid-template-rows: 150px auto;
     grid-template-areas: "header header"
                          "sidebar library";
 
 }
 
-.title{
+.headerContainer{
     grid-area: header;
 }
 
@@ -21,5 +21,13 @@ html, body{
 }
 
 .bookContainer{
+    display: flex;
     grid-area: library;
+}
+
+.formContainer{
+    display: none;
+    position: fixed;
+    top: 25%;
+    left: 25%;
 }

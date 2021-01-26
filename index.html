@@ -6,13 +6,26 @@
 </head>
 <body class='bodyContainer'>
     <div class='headerContainer'>
-        <h1 class='title'>Simple Library</h1>
+        <h1 class='header'>Simple Library</h1>
     </div>
     <div class='sidebarContainer'>
-        <button class='btn' id='newBook'>New Book</button>
+        <button class='btnNewBook' id='newBook'>New Book</button>
+    </div>
+    <div class='formContainer' id='formContainer'>
+        <form class='formPopup' id= 'formPopup'>
+            <h2>Add new book</h2>
+            <input class='formInput' type='text' placeholder='Title' id='titleInput' required>
+            <input class='formInput' type='text' placeholder='Author' id='authorInput' required>
+            <input class='formInput' type='text' placeholder='Pages' id='pagesInput' required>
+            <div class='readCheckbox'>
+                <label for='hasRead'>Done reading?</label>
+                <input type='checkbox' id='hasRead' name='hasRead'>
+            </div>
+            <button class='btnAddBook' form='formContainer' type='submit' id='btnAddBook'>Add</button>
+            <button class='btnCloseForm' id='btnCloseForm'>Cancel</button>
+        </form>
     </div>
     <div class='bookContainer'>
-        <h2>Book Area Delete This</h2>
     </div>
     
 
