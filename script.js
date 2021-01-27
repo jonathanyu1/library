@@ -24,16 +24,13 @@ function displayLibrary(){
     clearDisplay();
     myLibrary.forEach((item,index) =>{
         // create div bookCard for each book
-        console.log(item);
-        console.log(index);
         book = document.createElement('div');
         book.classList.add('bookCard');
         book.setAttribute('data-index',`${index}`);
-        console.log(book.getAttribute('data-index')); //string
         bookContainer.appendChild(book);
+        // set prototype
         // loop through each object book, add contents of book to each bookCard
         Object.keys(item).forEach(key =>{
-            console.log(key, item[key]);
             content = document.createElement('div');
             content.classList.add(`${key}`);
             content.innerHTML=`${item[key]}`;
@@ -57,25 +54,33 @@ function displayLibrary(){
             removeBook(currentIndex);
         });
     });
-    const readToggles = document.querySelectorAll('.readStatus');
-    readToggles.forEach((readTgl)=>{
-        readTgl.addEventListener('click', function(e){
-            console.log(readTgl.previousSibling.innerHTML);
-            const currentStatus=(readTgl.previousSibling.innerHTML);
-            const currIndex=Number(readTgl.parentNode.getAttribute('data-index'));
-            toggleReadStatus(currentStatus,currIndex);
-        });
+     const readToggles = document.querySelectorAll('.readStatus');
+     readToggles.forEach((readTgl)=>{
+         readTgl.addEventListener('click', function(e){
+             const currentStatus=(readTgl.previousSibling.innerHTML);
+             const currIndex=Number(readTgl.parentNode.getAttribute('data-index'));
+             myLibrary[currIndex].toggleReadStatus(currentStatus,currIndex);
+         });
     });
 }
 
-function toggleReadStatus(currentStatus, index){
+bookMaker.prototype.toggleReadStatus = function(currentStatus,index){
     if (currentStatus=='read'){
         myLibrary[index].read='not read';
     } else{
         myLibrary[index].read='read';
-    }
+        }
     displayLibrary();
 }
+
+// function toggleReadStatus(currentStatus, index){
+//     if (currentStatus=='read'){
+//         myLibrary[index].read='not read';
+//     } else{
+//         myLibrary[index].read='read';
+//     }
+//     displayLibrary();
+// }
 
 function removeBook(index){
     myLibrary.splice(index,1);
