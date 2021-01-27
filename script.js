@@ -62,6 +62,21 @@ function displayLibrary(){
              myLibrary[currIndex].toggleReadStatus(currentStatus,currIndex);
          });
     });
+    updateStats();
+}
+
+function updateStats(){
+    let numBooksRead=0;
+    document.getElementById('totalBooks').innerHTML=`Total Books: ${myLibrary.length}`;
+     myLibrary.forEach((item,index)=>{
+         console.log(item.read);
+         if (item.read=='read'){
+             numBooksRead++;
+         }
+     });
+    document.getElementById('totalRead').innerHTML=`Total Read: ${numBooksRead}`;
+    document.getElementById('totalUnread').innerHTML=`Total Unread: ${myLibrary.length-numBooksRead}`;
+    numBooksRead=0;
 }
 
 bookMaker.prototype.toggleReadStatus = function(currentStatus,index){
@@ -122,6 +137,13 @@ addBook.addEventListener('click', function(e){
     closeForm();
 });
 
+// If user clicks anywhere outside of popup, close it
+window.onclick = function(e) {
+    console.log(e.target);
+     if (e.target == formContainer) {
+       closeForm();
+     }
+  }
 
 
 let book1 = new bookMaker('The Hobbit', 'J.R.R. Tolkien', '295', 'not read');
