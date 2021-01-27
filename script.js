@@ -22,11 +22,14 @@ function addBookToLibrary(newBook){
 
 function displayLibrary(){
     clearDisplay();
-    myLibrary.forEach((item) =>{
+    myLibrary.forEach((item,index) =>{
         // create div bookCard for each book
         console.log(item);
+        console.log(index);
         book = document.createElement('div');
         book.classList.add('bookCard');
+        book.setAttribute('data-index',`${index}`);
+        console.log(book.getAttribute('data-index')); //string
         bookContainer.appendChild(book);
         // loop through each object book, add contents of book to each bookCard
         Object.keys(item).forEach(key =>{
@@ -36,7 +39,21 @@ function displayLibrary(){
             content.innerHTML=`${item[key]}`;
             book.appendChild(content);
         });
+         // delete button
+         deleteBook = document.createElement('button');
+         deleteBook.classList.add('deleteBook');
+         deleteBook.innerHTML='Delete'
+         book.appendChild(deleteBook);
+         deleteBook.addEventListener('click', function(e){
+            const index=Number(book.getAttribute('data-index'));
+            removeBook(index);
+});
     });
+}
+
+function removeBook(index){
+    myLibrary.splice(index,1);
+    displayLibrary();
 }
 
 function clearDisplay(){
@@ -70,7 +87,6 @@ addBook.addEventListener('click', function(e){
     const bookRead=document.getElementById('hasRead');
     const bookN = new bookMaker(bookTitle.value, bookAuthor.value, bookPages.value, bookRead.checked)
     addBookToLibrary(bookN);
-    console.log(myLibrary);
     displayLibrary();
     closeForm();
 });

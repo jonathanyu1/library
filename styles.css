@@ -1,7 +1,8 @@
-html, body{
-    height: 100%;
-    width: 100%;
-}
+
+
+* {
+    box-sizing: border-box;
+  }
 
 .bodyContainer{
     display:grid;
@@ -20,10 +21,45 @@ html, body{
     grid-area: sidebar;
 }
 
+/* library */
+
 .bookContainer{
-    display: flex;
     grid-area: library;
+    /*display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;*/
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    justify-items: start;
+    gap: 20px;
+    
 }
+
+.bookCard{
+    border: thin solid gray;
+    text-align: center;
+    width: 100%;
+    height: 300px;
+    font-size: 25px;
+}
+
+.title{
+    padding-top: 10px;
+}
+
+.author{
+    padding-top: 10px;
+}
+
+.pages{
+    padding-top: 10px;
+}
+
+.read{
+    padding-top: 10px;
+}
+
+/* form */
 
 .formContainer{
     display: none;
