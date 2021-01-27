@@ -39,16 +39,42 @@ function displayLibrary(){
             content.innerHTML=`${item[key]}`;
             book.appendChild(content);
         });
+        // read toggle
+        readStatus = document.createElement('button');
+        readStatus.classList.add('readStatus');
+        readStatus.innerHTML='Toggle Read';
+        book.appendChild(readStatus);
          // delete button
          deleteBook = document.createElement('button');
          deleteBook.classList.add('deleteBook');
          deleteBook.innerHTML='Delete'
          book.appendChild(deleteBook);
-         deleteBook.addEventListener('click', function(e){
-            const index=Number(book.getAttribute('data-index'));
-            removeBook(index);
-});
     });
+    const deleteButtons = document.querySelectorAll('.deleteBook');
+    deleteButtons.forEach((delBtn)=>{
+        delBtn.addEventListener('click', function(e){
+            const currentIndex=Number(delBtn.parentNode.getAttribute('data-index'));
+            removeBook(currentIndex);
+        });
+    });
+    const readToggles = document.querySelectorAll('.readStatus');
+    readToggles.forEach((readTgl)=>{
+        readTgl.addEventListener('click', function(e){
+            console.log(readTgl.previousSibling.innerHTML);
+            const currentStatus=(readTgl.previousSibling.innerHTML);
+            const currIndex=Number(readTgl.parentNode.getAttribute('data-index'));
+            toggleReadStatus(currentStatus,currIndex);
+        });
+    });
+}
+
+function toggleReadStatus(currentStatus, index){
+    if (currentStatus=='read'){
+        myLibrary[index].read='not read';
+    } else{
+        myLibrary[index].read='read';
+    }
+    displayLibrary();
 }
 
 function removeBook(index){
