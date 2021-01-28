@@ -1,6 +1,6 @@
 This project is a simple library that allows you to store books, with their contents in a card-style format. 
 
-Link to preview the project: 
+Link to preview the project: https://jonathanyu1.github.io/library/
 
 What I learned:
 
