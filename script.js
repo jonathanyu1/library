@@ -6,9 +6,9 @@ function bookMaker(title,author,pages,read){
     this.author=author;
     this.pages=pages+' pages';
     if (read){
-        this.read='read';
+        this.read='Read';
     } else{
-        this.read='not read';
+        this.read='Not Read';
     }
     // this.info= function(){
     //     return `${this.title} by ${this.author}, ${this.pages}, ${this.read}`;
@@ -28,7 +28,6 @@ function displayLibrary(){
         book.classList.add('bookCard');
         book.setAttribute('data-index',`${index}`);
         bookContainer.appendChild(book);
-        // set prototype
         // loop through each object book, add contents of book to each bookCard
         Object.keys(item).forEach(key =>{
             content = document.createElement('div');
@@ -63,14 +62,26 @@ function displayLibrary(){
          });
     });
     updateStats();
+    updateColor();
+}
+
+function updateColor(){
+    const readStat = document.querySelectorAll('.readStatus');
+    readStat.forEach((item)=>{
+        if (item.previousSibling.innerHTML=='Read'){
+            item.style.backgroundColor='lightgreen';
+        } else{
+            item.style.backgroundColor='#F08080';
+        }
+
+    });
 }
 
 function updateStats(){
     let numBooksRead=0;
     document.getElementById('totalBooks').innerHTML=`Total Books: ${myLibrary.length}`;
-     myLibrary.forEach((item,index)=>{
-         console.log(item.read);
-         if (item.read=='read'){
+     myLibrary.forEach((item)=>{
+         if (item.read=='Read'){
              numBooksRead++;
          }
      });
@@ -80,22 +91,13 @@ function updateStats(){
 }
 
 bookMaker.prototype.toggleReadStatus = function(currentStatus,index){
-    if (currentStatus=='read'){
-        myLibrary[index].read='not read';
+    if (currentStatus=='Read'){
+        myLibrary[index].read='Not Read';
     } else{
-        myLibrary[index].read='read';
+        myLibrary[index].read='Read';
         }
     displayLibrary();
 }
-
-// function toggleReadStatus(currentStatus, index){
-//     if (currentStatus=='read'){
-//         myLibrary[index].read='not read';
-//     } else{
-//         myLibrary[index].read='read';
-//     }
-//     displayLibrary();
-// }
 
 function removeBook(index){
     myLibrary.splice(index,1);
@@ -116,7 +118,6 @@ function openForm(){
 function closeForm(){
     document.getElementById('formContainer').style.display='none'
 }
-
 
 // add new book
 const btnNewBook = document.getElementById('newBook');
@@ -139,15 +140,14 @@ addBook.addEventListener('click', function(e){
 
 // If user clicks anywhere outside of popup, close it
 window.onclick = function(e) {
-    console.log(e.target);
      if (e.target == formContainer) {
        closeForm();
      }
   }
 
 
-let book1 = new bookMaker('The Hobbit', 'J.R.R. Tolkien', '295', 'not read');
-addBookToLibrary(book1);
-let book2 = new bookMaker ('Harry Potter', 'J.K. Rowling', '300', 'read');
-addBookToLibrary(book2);
-console.log(displayLibrary());
+// let book1 = new bookMaker('The Hobbit', 'J.R.R. Tolkien', '295', 'Not Read');
+// addBookToLibrary(book1);
+// let book2 = new bookMaker ('Harry Potter', 'J.K. Rowling', '300', 'Read');
+// addBookToLibrary(book2);
+// console.log(displayLibrary());

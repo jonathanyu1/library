@@ -1,4 +1,7 @@
-
+html,body{
+    height:100%;
+    width:100%;
+}
 
 * {
     box-sizing: border-box;
@@ -6,27 +9,54 @@
 
 .bodyContainer{
     display:grid;
-    grid-template-columns: 15% auto;
-    grid-template-rows: 150px auto;
+    grid-template-columns: 20% auto;
+    grid-template-rows: 100px auto;
     grid-template-areas: "header library"
                          "sidebar library";
     margin-top:0;
     margin-left:0;
 }
 
+/*header*/
+
 .headerContainer{
     grid-area: header;
+    background-color: lightblue;
+    border-right: 2px solid black;
+    font-family: 'Anton', sans-serif;
+}
+
+.header{
+    text-align: center;
+    text-decoration: underline;
+    font-size: 50px;
 }
 
 /* sidebar */
 
 .sidebarContainer{
     grid-area: sidebar;
+    background-color: lightblue;
+    text-align: center;
+    border-right: 2px solid black;
+    font-family: 'Anton', sans-serif;
+}
+
+.btnNewBook{
+    font-family: 'Anton', sans-serif;
+    font-size: 25px;
+    padding: 20px;
+    background-color:lightgreen;
+    border:none;
+    margin-top:30px;
+    margin-bottom:25px;
+    border-radius:5px;
 }
 
 .statContainer{
-    margin-left:10px;
-    margin-right:10px;
+    margin-left:50px;
+    margin-right:50px;
+    font-size: 25px;
 }
 
 /* library */
@@ -38,18 +68,23 @@
     flex-wrap: wrap;*/
     display: grid;
     grid-template-columns: repeat(5,1fr);
-    justify-items: start;
+    grid-template-rows: repeat(5,1fr);
     gap: 20px;
-    padding-top: 10px;
+    padding-top: 20px;
     padding-left: 20px;
 }
 
 .bookCard{
+    display: block;
     border: thin solid gray;
+    border-radius:10px;
+    background-color: #D3D3D3;
     text-align: center;
-    width: 100%;
+    width: 400px;
     height: 300px;
     font-size: 25px;
+    font-family: 'Lato', sans-serif;
+    padding-top: 35px;
 }
 
 .title{
@@ -68,6 +103,25 @@
     padding-top: 10px;
 }
 
+.readStatus{
+   background-color:lightgreen;
+   border:none;
+   font-family: 'Lato', sans-serif;
+   font-size: 20px;
+   margin: 25px 35px 0px 0px;
+   padding: 15px; 
+   border-radius:5px;
+}
+
+.deleteBook{
+   font-family: 'Lato', sans-serif;
+   font-size:20px;
+   padding: 15px 31px 15px 31px;
+   background-color:#CC0000;
+   border: none;
+   border-radius:5px;
+}
+
 /* form */
 
 .formContainer{
@@ -83,13 +137,50 @@
 }
 
 .formPopup{
-    /*
-    width: 10%;
-    text-align: center;
-    */
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
+    background-color: #D1EEEE;
+    margin: 10% auto;
     padding: 20px;
-    border: 1px solid #888;
-    width: 10%; /* Could be more or less, depending on screen size */
+    border: 2px solid #888;
+    border-radius: 5px;
+    width: 15%;
+    height: 40%;
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+    font-size: 25px;
+}
+
+.formHeader{
+    font-size: 30px;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.formInput{
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 2px solid #888;
+    height: 40px;
+    width: 90%;
+    font-size: 20px;
+}
+
+#hasRead{
+    height: 25px;
+    width: 25px;
+    margin-left: 20px;
+}
+
+.btnAddBook{
+    font-family: 'Lato', sans-serif;
+    font-size: 20px;
+    padding: 15px;
+    margin: 20px 15px 0px 0px;
+    width: 100px;
+}
+
+.btnCloseForm{
+    font-family: 'Lato', sans-serif;
+    font-size: 20px;
+    padding: 15px;
+    width: 100px;
 }
