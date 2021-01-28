@@ -6,6 +6,8 @@ What I learned:
 
 -how to setup and use prototype functions and inheritance of prototype functions
 
+-setup and use constructors for objects
+
 -manipulating objects and arrays together and storing, retrieving information from them
 
 -accessing objects to perform tasks more efficiently than previously done without objects
