@@ -110,14 +110,33 @@ function clearDisplay(){
     }
 }
 
+function addRequiredField(element){
+    element.classList.add('requiredField');
+}
+
+function removeRequiredField(element){
+    element.classList.remove('requiredField');
+}
+
+function clearAllRequiredFields(){
+    const bookTitle=document.getElementById('titleInput');
+    const bookAuthor=document.getElementById('authorInput');
+    const bookPages=document.getElementById('pagesInput');
+    removeRequiredField(bookTitle);
+    removeRequiredField(bookAuthor);
+    removeRequiredField(bookPages);
+}
+
 function openForm(){
     document.getElementById('formContainer').style.display='block'
     document.getElementById('formPopup').reset();
+    clearAllRequiredFields();
 }
 
 function closeForm(){
     document.getElementById('formContainer').style.display='none'
 }
+
 
 // add new book
 const btnNewBook = document.getElementById('newBook');
@@ -132,10 +151,28 @@ addBook.addEventListener('click', function(e){
     const bookAuthor=document.getElementById('authorInput');
     const bookPages=document.getElementById('pagesInput');
     const bookRead=document.getElementById('hasRead');
-    const bookN = new bookMaker(bookTitle.value, bookAuthor.value, bookPages.value, bookRead.checked)
-    addBookToLibrary(bookN);
-    displayLibrary();
-    closeForm();
+    if (!bookTitle.checkValidity()) {
+        addRequiredField(bookTitle);
+    } else if (bookTitle.checkValidity()){
+        removeRequiredField(bookTitle);
+    }
+    if (!bookAuthor.checkValidity()) {
+        addRequiredField(bookAuthor);
+    } else if (bookAuthor.checkValidity()){
+        removeRequiredField(bookAuthor);
+    }
+    if (!bookPages.checkValidity()) {
+        addRequiredField(bookPages);
+    } else if (bookPages.checkValidity()){
+        removeRequiredField(bookPages);
+    }
+    if (bookTitle.checkValidity() && bookAuthor.checkValidity() && bookPages.checkValidity()){
+        clearAllRequiredFields();
+        const bookN = new bookMaker(bookTitle.value, bookAuthor.value, bookPages.value, bookRead.checked)
+        addBookToLibrary(bookN);
+        displayLibrary();
+        closeForm();
+    }
 });
 
 // If user clicks anywhere outside of popup, close it
