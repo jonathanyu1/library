@@ -67,7 +67,7 @@ html,body{
 
 }
 
-.btnSignIn{
+.btnSignIn, .btnSignOut{
     font-family: 'Anton', sans-serif;
     font-size: 25px;
     padding: 20px;

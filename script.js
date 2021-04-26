@@ -14,6 +14,16 @@ function signOut() {
     firebase.auth().signOut();
 }
 
+// Returns the signed-in user's profile pic URL.
+function getProfilePicUrl() {
+    return firebase.auth().currentUser.photoURL || '/images/profile_placeholder.png';
+  }
+  
+// Returns the signed-in user's display name.
+function getUserName() {
+    return firebase.auth().currentUser.displayName;
+}
+
 function initFirebaseAuth() {
     // Listen to auth state changes.
     firebase.auth().onAuthStateChanged(authStateObserver);
@@ -22,8 +32,29 @@ function initFirebaseAuth() {
 function authStateObserver(user) {
     if (user) { // User is signed in!
         console.log('signed in!');
+        let profilePicUrl = getProfilePicUrl();
+        let currUserName = getUserName();
+
+        // Set the user's profile pic and name.
+        userPic.style.backgroundImage = 'url(' + addSizeToGoogleProfilePic(profilePicUrl) + ')';
+        userName.textContent = currUserName;
+
+        // Show user's profile and sign-out button.
+        userName.removeAttribute('hidden');
+        userPic.removeAttribute('hidden');
+        btnSignOut.removeAttribute('hidden');
+
+        // Hide sign-in button.
+        btnSignIn.setAttribute('hidden', 'true');
     } else { // User is signed out!
         console.log('signed out!');
+        // Hide user's profile and sign-out button.
+        userName.setAttribute('hidden', 'true');
+        userPic.setAttribute('hidden', 'true');
+        btnSignOut.setAttribute('hidden', 'true');
+
+        // Show sign-in button.
+        btnSignIn.removeAttribute('hidden');
     }
   }
 
@@ -201,9 +232,13 @@ addBook.addEventListener('click', function(e){
     }
 });
 
-// sign in
+// profile 
 const btnSignIn = document.getElementById('btnSignIn');
+const btnSignOut = document.getElementById('btnSignOut');
+const userName = document.getElementById('userName');
+const userPic = document.getElementById('userPic');
 btnSignIn.addEventListener('click', signIn);
+btnSignOut.addEventListener('click', signOut);
 
 // If user clicks anywhere outside of popup, close it
 window.onclick = function(e) {
