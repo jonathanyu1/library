@@ -58,6 +58,14 @@ function authStateObserver(user) {
     }
   }
 
+// Adds a size to Google Profile pics URLs.
+function addSizeToGoogleProfilePic(url) {
+    if (url.indexOf('googleusercontent.com') !== -1 && url.indexOf('?') === -1) {
+      return url + '?sz=150';
+    }
+    return url;
+  }
+
 function bookMaker(title,author,pages,read){
     this.title=title;
     this.author=author;
