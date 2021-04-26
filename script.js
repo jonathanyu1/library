@@ -1,6 +1,32 @@
 let myLibrary = [];
 const bookContainer = document.querySelector('.bookContainer');
 
+// Signs-in Friendly Chat.
+function signIn() {
+    // Sign into Firebase using popup auth & Google as the identity provider.
+    var provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithPopup(provider);
+  }
+  
+// Signs-out of Friendly Chat.
+function signOut() {
+    // Sign out of Firebase.
+    firebase.auth().signOut();
+}
+
+function initFirebaseAuth() {
+    // Listen to auth state changes.
+    firebase.auth().onAuthStateChanged(authStateObserver);
+}
+
+function authStateObserver(user) {
+    if (user) { // User is signed in!
+        console.log('signed in!');
+    } else { // User is signed out!
+        console.log('signed out!');
+    }
+  }
+
 function bookMaker(title,author,pages,read){
     this.title=title;
     this.author=author;
@@ -175,6 +201,10 @@ addBook.addEventListener('click', function(e){
     }
 });
 
+// sign in
+const btnSignIn = document.getElementById('btnSignIn');
+btnSignIn.addEventListener('click', signIn);
+
 // If user clicks anywhere outside of popup, close it
 window.onclick = function(e) {
      if (e.target == formContainer) {
@@ -182,6 +212,12 @@ window.onclick = function(e) {
      }
   }
 
+// initialize Firebase
+initFirebaseAuth();
+
+// TODO: Enable Firebase Performance Monitoring.
+// TODO: Initialize Firebase Performance Monitoring.
+// firebase.performance();
 
 // let book1 = new bookMaker('The Hobbit', 'J.R.R. Tolkien', '295', 'Not Read');
 // addBookToLibrary(book1);

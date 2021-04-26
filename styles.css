@@ -61,6 +61,23 @@ html,body{
     font-size: 25px;
 }
 
+/* profile container */ 
+
+.profileContainer{
+
+}
+
+.btnSignIn{
+    font-family: 'Anton', sans-serif;
+    font-size: 25px;
+    padding: 20px;
+    background-color:lightgreen;
+    border:none;
+    margin-top:30px;
+    margin-bottom:25px;
+    border-radius:5px;
+}
+
 /* library */
 
 .bookContainer{
